@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="icon" href="Logo_noveko.svg" type="image/x-icon">
+    <link rel="stylesheet" href="déroulé-diagnostique.css">
+</head>
+<body>
+
+    <a href="index.html" class="return-to-menu">Retour au Menu</a>
+
+    <header class="header-background">
+        <div class="logo">
+            <img src="Logo_noveko.svg" width="100" alt="Votre Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="infos_et_normes.html">Info/Norme</a></li>
+                <li><a href="#">Déroulé d'un diagnostic</a></li>
+                <li><a href="pro.html">Professionnel</a></li>
+                <li><a href="calendrier_client.html">Vos rendez-vous</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="diagnostic-section">
+            <div class="section-container">
+                <h1>Déroulé d'un diagnostic immobilier</h1>
+                <div class="diagnostic-steps">
+                    <div class="step">
+                        <h2>Contact Initial</h2>
+                        <p>Lorsque vous envisagez un projet immobilier, contactez-nous pour discuter de vos besoins en diagnostics ou pour en savoir plus sur les réglementations en vigueur.</p>
+                    </div>
+                    <div class="step">
+                        <h2>Devis et Planification</h2>
+                        <p>Nous établissons un devis personnalisé et planifions l'intervention selon vos disponibilités pour répondre précisément à vos besoins.</p>
+                    </div>
+                    <div class="step">
+                        <h2>Intervention sur Site</h2>
+                        <p>Nos experts réalisent les diagnostics nécessaires sur place, assurant une inspection complète. Leurs connaissances en bâtiment, couplées à leurs certifications, permettront un rapport clair et précis de l’état de votre bien.</p>
+                    </div>
+                    <div class="step">
+                        <h2>Remise du Rapport Final</h2>
+                        <p>Vous recevez un rapport complet et clair, documentant les résultats de notre intervention, ainsi que des axes d’améliorations.</p>
+                    </div>
+                    <div class="step">
+                        <h2>Suivi Client et Satisfaction</h2>
+                        <p>Nous restons à votre disposition pour tout suivi et assurons votre satisfaction à chaque étape.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-title">NOVEKO</div>
+                <p class="footer-text">La bonne maison dans le bon quartier au bon prix.</p>
+            </div>
+            
+            <div class="footer-middle">
+                <div class="footer-title-contact">CONTACT</div>
+                <div class="footer-contact">
+                    <p>contact@diagnostic-immobilier.com</p>
+                    <p>+33 6 57 41 05 58</p>
+                    <p>8 rue des petits pieds</p>
+                </div>
+            </div>
+    
+            <div class="footer-right">
+                <div class="footer-title">PAGE</div>
+                <ul class="footer-links">
+                    <li><a href="faq_diagnostic_immobilier.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <a href="lien-facebook" target="_blank" class="social-icon-link"><img src="Facebook (3).png" alt="Facebook"></a>
+            <a href="lien-instagram" target="_blank" class="social-icon-link"><img src="Insta.png" alt="Instagram"></a>
+        </div>
+    </footer>
+
+<script>
+    // Sélectionnez tous les éléments avec la classe "blue-square" et ajoutez des écouteurs d'événements
+document.querySelectorAll('.step').forEach(item => {
+    // Ajoute un écouteur d'événements pour le survol de la souris
+    item.addEventListener('mouseenter', event => {
+        // Ajoute la classe "enlarge" lorsque la souris survole
+        item.classList.add('enlarge');
+    });
+
+    // Ajoute un écouteur d'événements pour la sortie de la souris
+    item.addEventListener('mouseleave', event => {
+        // Supprime la classe "enlarge" lorsque la souris quitte
+        item.classList.remove('enlarge');
+    });
+});
+</script>
+
+</body>
+</html>

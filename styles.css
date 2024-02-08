@@ -1,0 +1,630 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Empêche la barre de défilement horizontale */
+}
+
+.header-background {
+    background-image: url('background_img.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Utilise 100% de la hauteur de la vue */
+    display: flex;
+    justify-content: center; /* Centre le contenu verticalement */
+    position: relative; /* Ajoutez cette propriété pour que le bouton position:absolute fonctionne correctement */
+}
+
+header {
+    padding: 0px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Assure que le contenu du header est positionné par rapport à .header-background */
+    z-index: 1; /* Assure que le header est au-dessus de .header-background */
+}
+
+.logo {
+    margin-top: -750px;
+}
+
+nav {
+    display: flex;
+    align-items: center; /* Centre les outons verticalement */
+    margin-top: -750px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-btn {
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: -750px;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+
+
+
+
+
+.background-button {
+    position: absolute;
+    bottom: 200px; /* Ajustez la distance du bas selon vos préférences */
+    left: 15%; /* Place le bouton à 50% de la largeur de l'écran */
+    transform: translateX(-50%); /* Centre horizontalement le bouton par rapport au 50% de la largeur */
+    padding: 15px 50px; /* Ajustez le rembourrage selon vos préférences */
+    background-color: #0f486e; /* Couleur bleue foncée pour le bouton */
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.background-button:hover {
+    background-color: #4e94c3; /* Couleur légèrement différente au survol */
+}
+
+
+
+
+
+
+
+
+
+
+
+.main-section {
+    flex: 1; /* Permet à .main-section de s'étirer pour occuper tout l'espace restant */
+    padding: 40px;
+    background-color: white; /* Ajoute un fond blanc à la section principale */
+}
+
+.read-more-btn {
+    background-color: #1d9bef; /* Couleur bleue foncée pour le bouton "En savoir plus" */
+    color: white;
+    padding: 12px 24px; /* Ajuste la taille du bouton */
+    border: none;
+    border-radius: 20px; /* Ajoute une bordure arrondie */
+    cursor: pointer;
+    font-size: 16px; /* Ajuste la taille du texte */
+    transition: background-color 0.3s ease; /* Ajoute une transition en couleur au survol */
+    margin-top: 20px;
+}
+
+.read-more-btn:hover {
+    background-color: #4e94c3; /* Couleur légèrement différente au survol */
+}
+
+.content-left {
+    margin-left: 380px;
+    margin-top: 30px;
+}
+
+.content-right {
+    margin-left: 420px;
+    margin-top: -140px;
+}
+
+.big-bold-text {
+    font-size: 50px;
+    margin-left: 850px;
+    margin-top: -120px;
+}
+
+.small-bold-text {
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.separator {
+    height: 5px; /* Ajuste la hauteur du trait de séparation */
+    background-color: #b9c2c8; /* Couleur bleue foncée pour le trait */
+    margin: 50px; /* Ajuste la marge au-dessus du trait */
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container-square-rectangle {
+    margin-left: -250px;
+}
+
+.blue-rectangle {
+    position: relative;
+    background-color: #3498db;
+    color: white;
+    border: 5px solid white;
+    height: 430px;
+    width: 245px;
+    padding-left: 20px;
+    padding-right: 50px;
+    margin-bottom: -65px;
+    display: inline-block;
+}
+
+.big-text {
+    font-size: 40px;
+}
+
+.small-text {
+    font-size: 23px;
+    opacity: 0.8;
+}
+
+.long-left-arrow {
+    font-size: 24px;
+    color: #1d9bef; /* Couleur de la flèche */
+    cursor: pointer; /* Ajoute un pointeur au survol pour indiquer l'interactivité */
+}
+
+.section-container1{
+    display: flex; /* Utilise Flexbox */
+    justify-content: space-between; /* Répartit les éléments avec un espace égal entre eux */
+    margin-left: 100px;
+    margin-top: -13px;
+    margin-right: 40px;
+}
+
+.blue-squares-container {
+    display: flex; /* Utilise Flexbox */
+    justify-content: space-between; /* Répartit les éléments avec un espace égal entre eux */
+    margin-left: 350px;
+    margin-top: -400px;
+    margin-right: 40px;
+}
+
+.blue-square,
+.blue-square2,
+.blue-square3,
+.blue-square4,
+.blue-square5,
+.blue-square6,
+.blue-square7,
+.blue-square8 {
+    flex: 1; /* Fait en sorte que chaque carré prenne autant d'espace que possible */
+    max-width: calc((100% - 90px) / 4); /* Calcule la largeur maximale en fonction de l'espace disponible */
+    background-color: #ffffff;
+    color: white;
+    border: 3px solid rgb(224, 224, 224);
+    height: 200px;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.enlarge {
+    transform: scale(1.1); /* Augmente l'échelle de 10% */
+    transition: transform 0.3s ease; /* Ajoute une transition fluide */
+}
+
+.new-section {
+    margin-left: 300px;
+}
+
+.square-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px; /* Ajustez la marge en fonction de votre mise en page */
+    margin-left: 30px;
+    color: #000;
+}
+
+.square-text {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: -10px; /* Ajustez la marge en fonction de votre mise en page */
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #000;    
+}
+
+
+
+
+
+
+
+
+
+
+.side-by-side-sections {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 200px; /* Ajustez la marge entre les sections si nécessaire */
+}
+
+.certifications-section, .devis-section {
+    flex: 1;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 40px;
+    background-color: white;
+    border: 2px solid #ccc; /* Couleur et épaisseur de la bordure */
+    border-radius: 10px; /* Ajoutez une bordure arrondie */
+    box-sizing: border-box; /* Garantit que la bordure et le rembourrage n'augmentent pas la largeur totale */
+}
+
+.section-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.certifications-section h2, .devis-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.certifications-section p, .devis-section p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.devis-btn {
+    background-color: #1d9bef;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.devis-btn:hover {
+    background-color: #4e94c3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.video-container {
+    width: 240px; /* Ajustez la largeur de la vidéo selon vos besoins */
+    height: 320px; /* Ajustez la hauteur de la vidéo selon vos besoins */
+    margin-left: 200px;
+    margin-bottom: -200px;
+    margin-top: 100px;
+}
+
+.text-video {
+    margin-left: 800px;
+    margin-bottom: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer-section {
+    background-color: #000;
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-title-contact {
+    font-size: 24px;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.footer-contact {
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.footer-middle {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.footer-left,
+.footer-right {
+    flex: 1;
+}
+
+.footer-title {
+    font-size: 24px;
+    color: #ffc107;
+    margin-bottom: 10px;
+}
+
+.footer-text {
+    font-size: 14px;
+    opacity: 0.8;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    opacity: 0.8;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffc107;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social-icon-link {
+    margin-right: 20px;
+}
+
+.social-icon-link img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+/* Media Queries pour les petits écrans (par exemple, jusqu'à 767px) */
+@media screen and (max-width: 750px) {
+    header {
+        flex-direction: column; /* Afficher les éléments du header en colonne */
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-top: 20px;
+    }
+
+    nav {
+        margin: 20px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin: 0;
+        text-align: center;
+    }
+
+    .login-btn {
+        margin-top: 20px;
+    }
+
+    .main-section {
+        padding: 20px;
+    }
+
+    .big-bold-text {
+        font-size: 30px;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .separator {
+        margin: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .new-section {
+        margin-left: 20px;
+    }
+
+    /* Ajoutez d'autres styles pour les petits écrans si nécessaire */
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .header-background {
+        height: auto; /* Ajuste la hauteur en fonction du contenu */
+        padding: 20px; /* Ajuste l'espace à l'intérieur du header */
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    nav {
+        margin: 10px 0;
+    }
+
+    .logo {
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    .login-btn {
+        margin-top: 0;
+    }
+
+    .main-section {
+        padding: 30px;
+    }
+
+    .big-bold-text {
+        font-size: 40px;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .separator {
+        margin: 30px;
+    }
+
+    .new-section {
+        margin-left: 40px;
+    }
+
+    /* Ajoutez d'autres styles pour les écrans moyens si nécessaire */
+}
+
+/* Media Queries pour les grands écrans (à partir de 1024px) */
+@media screen and (min-width: 1024px) {
+    .header-background {
+        height: 100vh;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        margin-top: -750px;
+    }
+
+    nav {
+        margin-top: -750px;
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    .login-btn {
+        margin-top: -750px;
+    }
+
+    .main-section {
+        padding: 40px;
+    }
+
+    .big-bold-text {
+        font-size: 50px;
+        margin-left: 650px;
+        margin-top: -120px;
+    }
+
+    .separator {
+        margin: 50px;
+        margin-left: 70px;
+        margin-right: 70px;
+        margin-bottom: 100px;
+    }
+
+    .new-section {
+        margin-left: 300px;
+    }
+
+    /* Ajoutez d'autres styles pour les grands écrans si nécessaire */
+}
