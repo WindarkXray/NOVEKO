@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="Logo_noveko.svg" type="image/x-icon">
     <title>Calendrier Mensuel</title>
     <style>
         :root {
@@ -41,7 +41,7 @@
         }
 
         .header-background {
-            height: 60vh; /* Réduit la hauteur du header */
+            height: 120px; /* Ajuste la hauteur du header */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,8 +57,8 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            margin-bottom: -200px;    
-            margin-top: -200px;
+            margin-bottom: 0; /* Ajuste la marge */
+            margin-top: 0; /* Ajuste la marge */
         }
 
         nav {
@@ -92,6 +92,14 @@
             background-color: rgba(0, 0, 0, 0.2);
         }
 
+        #calendar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
         #calendar {
             border-radius: 10px;
             padding: 30px;
@@ -99,32 +107,39 @@
             overflow: auto;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            display: flex;
             margin-top: 50px;
             margin-bottom: 50px;
             align-items: center;
             justify-content: center;
         }
 
-        h1 {
-            color: #3498db;
+        #calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
-            margin-right: 100px;
         }
 
-        #days-container {
+        #calendar-header h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        #calendar-body {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(7, 60px); /* Augmente la largeur des colonnes */
             gap: 10px;
             background-color: #00000025;
             padding: 20px;
             border-radius: 30px;
         }
 
-        .day {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
+        .calendar-day {
+            width: 60px; /* Augmente la largeur des jours */
+            height: 60px; /* Augmente la hauteur des jours */
+            line-height: 60px; /* Ajuste la hauteur de la ligne */
             border-radius: 50%;
             margin: 5px;
             font-size: 16px;
@@ -132,7 +147,12 @@
             transition: background-color 0.3s;
         }
 
-        .has-events {
+        .calendar-day.has-event {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .calendar-day:hover {
             background-color: #3498db;
             color: #fff;
         }
@@ -226,6 +246,32 @@
             height: 50px;
             border-radius: 50%;
         }
+
+        .calendar-navigation {
+            display: flex;
+            align-items: center;
+        }
+
+        .calendar-navigation button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .calendar-navigation button:hover {
+            background-color: #2980b9;
+        }
+
+        .calendar-day.has-event {
+            background-color: rgb(47, 155, 228);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -238,7 +284,7 @@
             <ul>
                 <li><a href="infos_et_normes.html">Info/Norme</a></li>
                 <li><a href="#">Déroulé d'un diagnostic</a></li>
-                <li><a href="pro.html">Professionnel</a></li>
+                <li><a href="contact.php">Nous contacter</a></li>
                 <li><a href="calendrier_client.html">Vos rendez-vous</a></li>
             </ul>
         </nav>
@@ -246,9 +292,17 @@
     
     <a href="index.html" class="return-to-menu">Retour au Menu</a>
 
-    <div id="calendar">
-        <h1>Calendrier Mensuel</h1>
-        <div id="days-container"></div>
+    <div id="calendar-container">
+        <div class="calendar" id="calendar">
+            <div id="calendar-header">
+                <button id="prev-month">&#9664;</button>
+                <h2 id="month-name">Février 2024</h2>
+                <button id="next-month">&#9654;</button>
+            </div>
+            <div class="calendar-body" id="calendar-body">
+                <!-- Les jours seront insérés ici par JavaScript -->
+            </div>
+        </div>
     </div>
 
     <footer class="footer-section">
@@ -279,69 +333,93 @@
             <a href="lien-instagram" target="_blank" class="social-icon-link"><img src="Insta.png" alt="Instagram"></a>
         </div>
     </footer>
-
+    
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const daysContainer = document.getElementById("days-container");
+        const calendarBody = document.getElementById('calendar-body');
+        const monthNameElement = document.getElementById('month-name');
+        const prevMonthButton = document.getElementById('prev-month');
+        const nextMonthButton = document.getElementById('next-month');
 
-            // Générer des données d'événements statiques (à remplacer par des données dynamiques depuis le backend)
-            const eventDays = [3, 8, 15, 22, 28];
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth() + 1; // Récupère le mois actuel
+        let currentYear = currentDate.getFullYear(); // Récupère l'année actuelle
 
-            // Récupérer le nombre de jours dans le mois (à remplacer par une logique plus précise)
-            const daysInMonth = 31;
+        // Fonction pour obtenir le nombre de jours dans un mois donné
+        function getDaysInMonth(year, month) {
+            return new Date(year, month, 0).getDate();
+        }
 
-            // Générer les jours du mois
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement("div");
-                dayElement.classList.add("day");
-                dayElement.textContent = day;
+        // Fonction pour vérifier si un événement existe pour une date donnée
+        function checkEvent(day) {
+            // Ici, vous pouvez insérer votre logique pour vérifier si un événement existe pour la date donnée
+            // Pour l'exemple, nous allons simplement retourner true ou false de manière aléatoire
+            return Math.random() < 0.5; // Retourne true avec une probabilité de 50%
+        }
 
-                // Vérifier si le jour a des événements
-                if (eventDays.includes(day)) {
-                    dayElement.classList.add("has-events");
-                    const eventIndicator = document.createElement("span");
-                    eventIndicator.classList.add("event-indicator");
-
-                    dayElement.appendChild(eventIndicator);
-                }
-
-                // Ajouter un événement de clic pour afficher les événements du jour
-                dayElement.addEventListener("click", function () {
-                    showEvents(day);
-                });
-
-                daysContainer.appendChild(dayElement);
+        // Fonction pour afficher le message de l'événement
+        function showEventMessage(day) {
+            const hasEvent = checkEvent(day);
+            if (hasEvent) {
+                alert(`Événement trouvé pour le ${day} ${monthNameElement.textContent} ${currentYear}.`);
+                // Ici, vous pouvez ajouter le code pour afficher le contenu de l'événement
+            } else {
+                alert(`Aucun événement trouvé pour le ${day} ${monthNameElement.textContent} ${currentYear}.`);
             }
+        }
+
+        // Fonction pour mettre à jour le calendrier
+        function updateCalendar() {
+            // Met à jour le nom du mois affiché
+            monthNameElement.textContent = new Date(currentYear, currentMonth - 1, 1).toLocaleString('default', { month: 'long' }) + ' ' + currentYear;
+
+            // Efface le contenu du calendrier
+            calendarBody.innerHTML = '';
+
+            // Boucle pour créer les jours du calendrier
+            const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('calendar-day');
+                dayElement.textContent = day;
+                
+                // Vérifie s'il y a un événement pour ce jour et ajoute la classe appropriée
+                if (checkEvent(day)) {
+                    dayElement.classList.add('has-event');
+                }
+                
+                dayElement.addEventListener('click', function() {
+                    showEventMessage(day);
+                });
+                calendarBody.appendChild(dayElement);
+            }
+        }
+
+        // Gestionnaire d'événement pour le bouton du mois précédent
+        prevMonthButton.addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 1) {
+                currentMonth = 12; // Décembre
+                currentYear--;
+            }
+            updateCalendar();
         });
 
-        // Fonction pour afficher les événements du jour
-        function showEvents(day) {
-            // Récupérer le contenu de la page calendrier_pro.html
-            fetch("calendrier_pro.html")
-                .then(response => response.text())
-                .then(html => {
-                    // Créer un élément temporaire pour parcourir le contenu HTML
-                    const temp = document.createElement("div");
-                    temp.innerHTML = html;
+        // Gestionnaire d'événement pour le bouton du mois suivant
+        nextMonthButton.addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 12) {
+                currentMonth = 1; // Janvier
+                currentYear++;
+            }
+            updateCalendar();
+        });
 
-                    // Extraire les événements du jour sélectionné
-                    const eventContainers = temp.querySelectorAll(".day");
-                    let eventsText = "Pas d'événements le jour " + day;
-                    eventContainers.forEach(container => {
-                        const eventDay = container.querySelector(".day").textContent;
-                        if (parseInt(eventDay) === day) {
-                            const eventIndicator = container.querySelector(".event-indicator");
-                            if (eventIndicator) {
-                                eventsText = eventIndicator.textContent;
-                            }
-                        }
-                    });
+        // Initialise le calendrier au chargement de la page
+        updateCalendar();
 
-                    // Afficher les événements récupérés
-                    alert("Événements le jour " + day + ": " + eventsText);
-                })
-                .catch(error => console.error('Erreur lors de la récupération des événements', error));
-        }
+        
+
     </script>
+
 </body>
 </html>

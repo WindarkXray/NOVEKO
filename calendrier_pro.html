@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="Logo_noveko.svg" type="image/x-icon">
     <title>Calendrier</title>
     <style>
         body {
@@ -163,61 +163,77 @@
 
     <a href="index.html" class="return-to-menu">Retour au Menu</a>
 
-<div id="calendrier-container">
-    <div id="calendrier">
-        <h1>Calendrier</h1>
-        <div id="form-container">
-            <label for="date">Date:</label>
-            <input type="date" id="date">
-            <label for="evenement">Événement:</label>
-            <input type="text" id="evenement">
-            <button onclick="ajouterEvenement()">Ajouter Événement</button>
+    <div id="calendrier-container">
+        <div id="calendrier">
+            <h1>Calendrier</h1>
+            <div id="form-container">
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <label for="evenement">Événement:</label>
+                <input type="text" id="evenement">
+                <button onclick="ajouterEvenement()">Ajouter Événement</button>
+            </div>
+            <div id="events-container"></div>
         </div>
-        <div id="events-container"></div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        let events = [];
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let events = [];
 
-        function updateCalendar() {
-            // Trier les événements par date
-            events.sort((a, b) => new Date(b.date) - new Date(a.date));
+            function updateCalendar() {
+                // Trier les événements par date
+                events.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            $("#events-container").empty();
-            for (let i = 0; i < events.length; i++) {
-                const eventContainer = $('<div class="event-container"></div>');
-                const eventDetails = $('<div class="event-details"></div>');
-                const dateText = $('<strong>' + events[i].date + '</strong>');
-                const removeButton = $('<button class="remove-button" onclick="supprimerEvenement(' + i + ')">X</button>');
-                eventDetails.append(dateText).append('<br>' + events[i].evenement);
-                eventContainer.append(removeButton).append(eventDetails);
-                $("#events-container").append(eventContainer);
+                $("#events-container").empty();
+                for (let i = 0; i < events.length; i++) {
+                    const eventContainer = $('<div class="event-container"></div>');
+                    const eventDetails = $('<div class="event-details"></div>');
+                    const dateText = $('<strong>' + events[i].date + '</strong>');
+                    const removeButton = $('<button class="remove-button" onclick="supprimerEvenement(' + i + ')">X</button>');
+                    eventDetails.append(dateText).append('<br>' + events[i].evenement);
+                    eventContainer.append(removeButton).append(eventDetails);
+                    $("#events-container").append(eventContainer);
+                }
             }
-        }
 
-        window.ajouterEvenement = function () {
-            const date = $("#date").val();
-            const evenement = $("#evenement").val();
+            window.ajouterEvenement = function () {
+                const date = $("#date").val();
+                const evenement = $("#evenement").val();
 
-            if (date && evenement) {
-                events.push({ date, evenement });
+                if (date && evenement) {
+                    events.push({ date, evenement });
+                    updateCalendar();
+                    $("#date").val("");
+                    $("#evenement").val("");
+
+                    // Stocke l'événement dans le localStorage
+                    let localStorageEvents = JSON.parse(localStorage.getItem('calendar_events')) || [];
+                    localStorageEvents.push({ date, evenement });
+                    localStorage.setItem('calendar_events', JSON.stringify(localStorageEvents));
+                } else {
+                    alert("Veuillez remplir tous les champs.");
+                }
+            };
+
+            window.supprimerEvenement = function (index) {
+                events.splice(index, 1);
                 updateCalendar();
-                $("#date").val("");
-                $("#evenement").val("");
-            } else {
-                alert("Veuillez remplir tous les champs.");
-            }
-        };
+            };
 
-        window.supprimerEvenement = function (index) {
-            events.splice(index, 1);
-            updateCalendar();
-        };
-    });
-</script>
+            // Met à jour le calendrier en récupérant les événements depuis le localStorage
+            function updateCalendarFromLocalStorage() {
+                // Obtient les événements depuis le localStorage
+                let localStorageEvents = JSON.parse(localStorage.getItem('calendar_events')) || [];
+                events = localStorageEvents;
+                updateCalendar();
+            }
+
+            // Initialise le calendrier au chargement de la page
+            updateCalendarFromLocalStorage();
+        });
+    </script>
 
 </body>
 </html>

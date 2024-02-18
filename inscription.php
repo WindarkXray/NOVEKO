@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="icon" href="Logo_noveko.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="inscription-styles.css">
 </head>
