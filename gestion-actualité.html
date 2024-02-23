@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Actualités</title>
+    <link rel="stylesheet" href="gestion-actualité.css">
+</head>
+<body>
+
+<header>
+    <h1>Gestion des Actualités</h1>
+</header>
+
+<main>
+    <div class="onglets">
+        <!-- Onglets existants -->
+        <div class="onglet">
+            <img src="image1.jpg" alt="Image 1">
+            <h2>Titre de l'Actualité 1</h2>
+            <p>Texte de l'Actualité 1</p>
+        </div>
+        <div class="onglet">
+            <img src="image2.jpg" alt="Image 2">
+            <h2>Titre de l'Actualité 2</h2>
+            <p>Texte de l'Actualité 2</p>
+        </div>
+        <!-- Ajouter d'autres onglets ici -->
+    </div>
+</main>
+
+<footer>
+    <button id="ajouter-onglet">Ajouter un onglet</button>
+</footer>
+
+<script src="gestion-actualité.js"></script>
+
+</body>
+</html>
+
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const ongletsContainer = document.querySelector(".onglets");
+    const ajouterOngletBtn = document.getElementById("ajouter-onglet");
+
+    // Fonction pour ajouter un nouvel onglet
+    ajouterOngletBtn.addEventListener("click", function() {
+        const titre = prompt("Entrez le titre de l'actualité :");
+        const imageURL = prompt("Entrez l'URL de l'image :");
+        const texte = prompt("Entrez le texte de l'actualité :");
+
+        if (titre && imageURL && texte) {
+            const onglet = document.createElement("div");
+            onglet.classList.add("onglet");
+
+            const image = document.createElement("img");
+            image.src = imageURL;
+
+            const h2 = document.createElement("h2");
+            h2.textContent = titre;
+
+            const p = document.createElement("p");
+            p.textContent = texte;
+
+            onglet.appendChild(image);
+            onglet.appendChild(h2);
+            onglet.appendChild(p);
+
+            ongletsContainer.appendChild(onglet);
+        } else {
+            alert("Veuillez remplir tous les champs.");
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

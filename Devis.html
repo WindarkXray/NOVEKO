@@ -9,19 +9,19 @@
 </head>
 <body>
 
-    <header class="header-background">
-        <div class="logo">
-            <img src="Logo_noveko.svg" width="100" alt="Votre Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Info/Norme</a></li>
-                <li><a href="déroulé_diagnostique.html">Déroulé d'un diagnostic</a></li>
-                <li><a href="pro.html">Professionnel</a></li>
-                <li><a href="calendrier_client.html">Vos rendez-vous</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="header-background">
+    <div class="logo">
+        <img src="Logo_noveko.svg" width="100" alt="Votre Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Info/Norme</a></li>
+            <li><a href="déroulé_diagnostique.html">Déroulé d'un diagnostic</a></li>
+            <li><a href="pro.html">Professionnel</a></li>
+            <li><a href="actualité.html">Actualités</a></li>
+        </ul>
+    </nav>
+</header>
 
 <main>
     <section class="form-section">
@@ -30,14 +30,58 @@
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" required>
 
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="adresse">Adresse postale :</label>
+            <textarea id="adresse" name="adresse" required></textarea>
+
+            <label for="telephone">Numéro de téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required>
+
             <label for="email">E-mail :</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="telephone">Téléphone :</label>
-            <input type="tel" id="telephone" name="telephone" required>
+            <label>Type de logement :</label>
+            <input type="radio" id="maison" name="type_logement" value="Maison" required>
+            <label for="maison">Maison</label>
+            <input type="radio" id="appartement" name="type_logement" value="Appartement">
+            <label for="appartement">Appartement</label>
 
-            <label for="adresse">Adresse du bien :</label>
-            <textarea id="adresse" name="adresse" required></textarea>
+            <label for="surface">Surface en m² :</label>
+            <input type="number" id="surface" name="surface" required>
+
+            <label for="pieces">Nombre de pièces :</label>
+            <input type="number" id="pieces" name="nombre_pieces" required>
+
+            <label for="mansarde">Avez-vous une mansarde ?</label>
+            <input type="checkbox" id="mansarde" name="mansarde">
+
+            <label for="extras">Options supplémentaires :</label>
+            <input type="checkbox" id="garage" name="extras[]" value="Garage">
+            <label for="garage">Garage</label>
+            <input type="checkbox" id="cave" name="extras[]" value="Cave">
+            <label for="cave">Cave</label>
+            <input type="checkbox" id="grenier" name="extras[]" value="Grenier">
+            <label for="grenier">Grenier</label>
+
+            <label>Type de diagnostic :</label>
+            <input type="checkbox" id="dpe" name="diagnostics[]" value="DPE">
+            <label for="dpe">DPE</label>
+            <input type="checkbox" id="amiante" name="diagnostics[]" value="Amiante">
+            <label for="amiante">Amiante</label>
+            <input type="checkbox" id="plomb" name="diagnostics[]" value="Plomb">
+            <label for="plomb">Plomb</label>
+            <input type="checkbox" id="termites" name="diagnostics[]" value="Termites">
+            <label for="termites">Termites</label>
+            <input type="checkbox" id="electricite" name="diagnostics[]" value="Electricité">
+            <label for="electricite">Electricité</label>
+            <input type="checkbox" id="erp" name="diagnostics[]" value="ERP">
+            <label for="erp">ERP</label>
+            <input type="checkbox" id="loi_carrez" name="diagnostics[]" value="Loi Carrez">
+            <label for="loi_carrez">Loi Carrez</label>
+            <input type="checkbox" id="gaz" name="diagnostics[]" value="Gaz">
+            <label for="gaz">Gaz</label>
 
             <button type="submit">Envoyer la demande</button>
         </form>
